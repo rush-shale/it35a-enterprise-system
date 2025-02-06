@@ -1,0 +1,82 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('image/gta-5-background-o5zqq1pkpmdbw2yt.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+  }
+  p{
+    color: rgb(24, 23, 23);
+    font-style: arials;
+    font-size: 20px;
+  }
+  
+  header {
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background for header */
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-Left .logo {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  
+  .header-Right a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+  }
+  
+  .header-Right a.active {
+    font-weight: bold;
+  }
+  
+  section {
+    padding: 80px 20px 20px; /* Extra top padding to account for fixed header */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* White background with opacity for content */
+    margin: 0 auto;
+    max-width: 800px;
+    border-radius: 8px;
+  }
+  
+  footer {
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background for footer */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  /* Add media query for responsiveness */
+  @media (max-width: 768px) {
+    .header-Right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .header-Right a {
+        margin: 10px 0;
+    }
+  }
