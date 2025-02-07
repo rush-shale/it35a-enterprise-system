@@ -2,9 +2,18 @@ Research Title:
 A Comparative Study of Successful vs. Unsuccessful Implementations of Enterprise Systems in the Philippines
 
 Case Study 1: Successful Implementation of an Enterprise System (Example: Jollibee Foods Corporation)
-1. Company Overview
+1.Company Overview
 Jollibee Foods Corporation, one of the largest fast-food chains in the Philippines, decided to implement an Enterprise Resource Planning (ERP) system to address operational inefficiencies across its extensive network of stores. The need for this system was driven by:
 
-Centralized Data: Consolidating sales, inventory, and financial data in real-time.
-Operational Efficiency: Streamlining supply chain management and store operations.
-Scalable Growth: Supporting expansion and ensuring smooth multi-branch operations.
+*Centralized Data: Consolidating sales, inventory, and financial data in real-time.
+*Operational Efficiency: Streamlining supply chain management and store operations.
+*Scalable Growth: Supporting expansion and ensuring smooth multi-branch operations.
+
+2.Implementation Process
+Jollibee implemented a structured ERP process with the following steps:
+
+*Planning & Preparation: Formation of a cross-functional team with third-party consultants. The company conducted a detailed needs assessment and selected SAP ERP as the solution.
+*Customization & Configuration: Modules were configured for financials, supply chain, and inventory management. Integrations were built to connect with existing systems.
+*Data Migration: Data from legacy systems were cleansed and migrated to the new platform.
+*Training & User Acceptance Testing (UAT): Employees across departments underwent extensive training and participated in UAT.
+*Go-Live & Post-Implementation Support: The rollout was conducted in stages to minimize disruptions, and a dedicated team provided ongoing support after the launch.
