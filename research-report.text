@@ -1,32 +1,56 @@
-Research Title:
-A Comparative Study of Successful vs. Unsuccessful Implementations of Enterprise Systems in the Philippines
+A.Research Title:
+A Comparative Study of Successful vs. Unsuccessful Implementations of Enterprise Systems in the Food Industry in the Philippines
 
-Case Study 1: Successful Implementation of an Enterprise System (Example: Jollibee Foods Corporation)
-1.Company Overview
-Jollibee Foods Corporation, one of the largest fast-food chains in the Philippines, decided to implement an Enterprise Resource Planning (ERP) system to address operational inefficiencies across its extensive network of stores. The need for this system was driven by:
+B.Case Study 1: Successful Implementation of an Enterprise System (Jollibee Foods Corporation)
+B.1. Company Overview
+Jollibee Foods Corporation, the leading fast-food chain in the Philippines, implemented a robust enterprise system to manage food handling, preparation, and supply chain processes. The system was necessary to address operational inefficiencies and maintain high standards for food safety and customer service. The primary goals were to:
 
-*Centralized Data: Consolidating sales, inventory, and financial data in real-time.
-*Operational Efficiency: Streamlining supply chain management and store operations.
-*Scalable Growth: Supporting expansion and ensuring smooth multi-branch operations.
+*Ensure centralized data management across stores.
+*Improve supply chain visibility.
+*Maintain high standards for food safety, cleanliness, and service.
 
-2.Implementation Process
-Jollibee implemented a structured ERP process with the following steps:
+B.2. Implementation Process:
+Jollibee adopted a structured approach to enterprise system implementation:
 
-*Planning & Preparation: Formation of a cross-functional team with third-party consultants. The company conducted a detailed needs assessment and selected SAP ERP as the solution.
-*Customization & Configuration: Modules were configured for financials, supply chain, and inventory management. Integrations were built to connect with existing systems.
-*Data Migration: Data from legacy systems were cleansed and migrated to the new platform.
-*Training & User Acceptance Testing (UAT): Employees across departments underwent extensive training and participated in UAT.
-*Go-Live & Post-Implementation Support: The rollout was conducted in stages to minimize disruptions, and a dedicated team provided ongoing support after the launch.
+*Planning & Preparation: Conducted a thorough needs assessment and chose a vendor that suited their requirements.
+*Customization & Configuration: Configured modules for supply chain management and food safety processes.
+*Data Migration: Cleansed and migrated data from legacy systems.
+*Training & User Acceptance Testing (UAT): Comprehensive training for staff ensured a seamless transition.
+*Go-Live & Post-Implementation Support: Phased deployment with dedicated post-implementation support.
 
-3. Key Success Factors
-*Executive Sponsorship: The full support of the top management ensured resource allocation and smooth execution.
-*Clear Communication: Stakeholders were regularly updated on the project's progress.
-*User Involvement: Engaging users from the planning to testing phase fostered buy-in and system alignment with their needs.
-*Effective Project Management: A dedicated project management team kept the project on track and within budget.
-*Change Management: A robust change management strategy prepared employees for the transition.
+B.3. Key Success Factors:
+*Executive Sponsorship: Strong support from top management.
+*Effective Change Management: Clear communication strategies ensured staff buy-in.
+*User Involvement: Employees were engaged throughout the process.
+*Robust Training Programs: Comprehensive training ensured staff readiness.
+*Focus on Food Safety: Integration of food safety practices into system workflows.
 
-4. Outcomes & Impact
-*Improved Data Visibility: Access to real-time data enhanced decision-making.
-*Increased Efficiency: Optimized processes led to faster order fulfillment and reduced operational costs.
-*Better Customer Engagement: Improved service levels and faster transactions at branches.
-*Scalable Operations: The ERP system supported the company's domestic and international growth.
+B.4. Outcomes & Impact:
+*Operational Efficiency: Streamlined supply chain and food preparation processes.
+*Enhanced Food Safety: Consistent adherence to food safety standards.
+*Customer Satisfaction: Improved service delivery and customer experience.
+*Scalability: Supported the company's domestic and international growth.
+
+C.Case Study 2: Failed Implementation of an Enterprise System (Beta Retail Corporation)
+C.1. Company Overview:
+Beta Retail Corporation (fictional), a mid-sized retail company in the Philippines, attempted to implement an enterprise system to modernize its operations and improve inventory management.
+
+C.2. Implementation Process & Challenges:
+*Insufficient Planning: Lacked a clear project scope and timeline.
+*Poor Vendor Selection: Chose an inexperienced vendor.
+*Abrupt Rollout: Implemented the system simultaneously across all branches.
+*Limited Training: Staff were not adequately trained, leading to operational errors.
+*Resistance to Change: Employees were hesitant to adopt the new system.
+
+C.3. Key Failure Factors:
+*Unrealistic Expectations: Underestimated the complexity of the project.
+*Lack of Executive Sponsorship: Limited involvement from top management.
+*Technical Issues: Frequent system errors disrupted operations.
+*Poor Communication: Inadequate communication with stakeholders.
+
+C.4. Outcomes & Consequences:
+*Operational Disruptions: Frequent system downtimes.
+*Financial Losses: Substantial financial losses due to inefficiencies.
+*Employee Frustration: Decreased morale and productivity.
+*Reputation Damage: Loss of customer trust.
+
