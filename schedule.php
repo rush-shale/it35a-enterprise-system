@@ -1,3 +1,43 @@
+<?php
+// Include the database connection
+require_once 'config.php';
+
+$message = '';
+$error = '';
+
+// Handle form submission for scheduling an appointment
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get the form data
+    $patient = $_POST['patient'];
+    $doctor = $_POST['doctor'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+
+    // Validate inputs
+    if (empty($patient) || empty($doctor) || empty($date) || empty($time)) {
+        $error = 'Please fill all fields.';
+    } else {
+        // Insert the appointment into the database
+        try {
+            $sql = "INSERT INTO appointments (patient_id, doctor_id, appointment_date) 
+                    VALUES ((SELECT patient_id FROM patients WHERE full_name = :patient LIMIT 1), 
+                            (SELECT doctor_id FROM doctors WHERE full_name = :doctor LIMIT 1),
+                            :appointment_date)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([
+                ':patient' => $patient,
+                ':doctor' => $doctor,
+                ':appointment_date' => "$date $time"
+            ]);
+            $message = 'Appointment scheduled successfully!';
+        } catch (PDOException $e) {
+            $error = 'Error scheduling appointment: ' . $e->getMessage();
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,3 +70,6 @@
 
         <button type="submit">Schedule</button>
     </form>
+</div>
+</body>
+</html>

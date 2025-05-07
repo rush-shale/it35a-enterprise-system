@@ -1,72 +1,49 @@
-<?php require_once 'config.php'; ?>
+<?php
+// Include the database connection
+require_once 'config.php';
+
+$appointments = [];
+
+// Get upcoming appointments
+try {
+    $sql = "SELECT a.appointment_id, p.full_name AS patient, d.full_name AS doctor, a.appointment_date, a.status 
+            FROM appointments a
+            JOIN patients p ON a.patient_id = p.patient_id
+            JOIN doctors d ON a.doctor_id = d.doctor_id
+            WHERE a.appointment_date >= NOW()";
+    
+    // Prepare and execute the query
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    
+    // Fetch all results as associative arrays
+    $appointments = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $error = 'Error fetching appointments: ' . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Appointment List - MEDICARE</title>
+    <title>Upcoming Appointments</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <div class="header">
-        <div class="header-Left">
-            <a href="index.php" class="logo">MEDICARE</a>
-        </div>
-        <div class="header-Right">
-            <a href="index.php">Home</a>
-            <a class="active" href="appointment-list.php">Appointments</a>
-        </div>
-    </div>
-</header>
-
-<section>
-    <h1>Appointment List</h1>
-    <?php
-    $stmt = $conn->prepare("
-        SELECT 
-            a.appointment_id,
-            p.full_name AS patient_name,
-            d.full_name AS doctor_name,
-            a.appointment_date,
-            a.reason,
-            a.status
-        FROM appointments a
-        LEFT JOIN patients p ON a.patient_id = p.patient_id
-        LEFT JOIN doctors d ON a.doctor_id = d.doctor_id
-        ORDER BY a.appointment_date DESC
-    ");
-    $stmt->execute();
-    $appointments = $stmt->fetchAll();
-    ?>
-
-    <?php if ($appointments): ?>
-        <table border="1" cellpadding="10" cellspacing="0">
-            <tr>
-                <th>Patient</th>
-                <th>Doctor</th>
-                <th>Date</th>
-                <th>Reason</th>
-                <th>Status</th>
-            </tr>
-            <?php foreach ($appointments as $row): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['patient_name']) ?></td>
-                    <td><?= htmlspecialchars($row['doctor_name']) ?></td>
-                    <td><?= htmlspecialchars($row['appointment_date']) ?></td>
-                    <td><?= htmlspecialchars($row['reason']) ?></td>
-                    <td><?= htmlspecialchars($row['status']) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
+<div class="main" style="margin-left: 220px; padding: 20px;">
+    <h3>Upcoming Appointments</h3>
+    <?php if (!empty($error)): ?>
+        <p style="color: red;"><?= $error ?></p>
     <?php else: ?>
-        <p>No appointments found.</p>
+        <ul>
+            <?php foreach ($appointments as $appt): ?>
+                <li>
+                    <?= htmlspecialchars($appt['patient']) ?> with <?= htmlspecialchars($appt['doctor']) ?> on <?= htmlspecialchars($appt['appointment_date']) ?> (Status: <?= htmlspecialchars($appt['status']) ?>)
+                </li>
+            <?php endforeach; ?>
+        </ul>
     <?php endif; ?>
-</section>
-
-<footer>
-    <div class="footer">
-        &copy; 2025 <strong>MEDICARE</strong>. All Rights Reserved.
-    </div>
-</footer>
+</div>
 </body>
 </html>

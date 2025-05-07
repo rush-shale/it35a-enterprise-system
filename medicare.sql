@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2025 at 01:42 AM
+-- Generation Time: May 07, 2025 at 09:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -65,6 +65,16 @@ CREATE TABLE `doctors` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`doctor_id`, `full_name`, `specialty`, `phone`, `email`, `created_at`) VALUES
+(1, 'Dr. Alice Santos', 'Cardiology', '123-456-7890', 'alice@example.com', '2025-05-07 07:03:16'),
+(2, 'Dr. John Cruz', 'Neurology', '234-567-8901', 'john@example.com', '2025-05-07 07:03:16'),
+(3, 'Dr. Maria Lopez', 'Pediatrics', '345-678-9012', 'maria@example.com', '2025-05-07 07:03:16'),
+(4, 'Dr. Daniel Reyes', 'Orthopedics', '456-789-0123', 'daniel@example.com', '2025-05-07 07:03:16');
+
 -- --------------------------------------------------------
 
 --
@@ -81,6 +91,14 @@ CREATE TABLE `patients` (
   `email` varchar(100) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `patients`
+--
+
+INSERT INTO `patients` (`patient_id`, `full_name`, `birth_date`, `gender`, `phone`, `address`, `email`, `created_at`) VALUES
+(1, 'John Doe', '1990-01-01', 'male', '555-1234', '123 Main St', 'johndoe@example.com', '2025-05-07 07:03:16'),
+(2, 'Jane Smith', '1985-02-14', 'female', '555-2345', '456 Oak St', 'janesmith@example.com', '2025-05-07 07:03:16');
 
 -- --------------------------------------------------------
 
@@ -176,13 +194,13 @@ ALTER TABLE `billing`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `prescriptions`
