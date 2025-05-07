@@ -30,3 +30,6 @@
 
         <button type="submit">Schedule</button>
     </form>
+</div>
+</body>
+</html>
