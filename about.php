@@ -1,5 +1,5 @@
-<?php 
-session_start(); 
+<?php
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,104 +8,97 @@ session_start();
     <title>About Us - Medicare</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        .main {
+            margin-left: 240px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
         .about-container {
-            margin-left: 220px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
+            padding: 30px;
             border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             max-width: 900px;
-            margin-top: 100px;
+            margin: auto;
         }
 
-        h2, h3 {
-            color: #2a7a78;
+        .about-container h2 {
+            font-size: 32px;
+            color: #003366;
+            margin-bottom: 20px;
         }
 
-        .about-section {
-            margin-bottom: 40px;
+        .about-container p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
         }
 
-        .team {
+        .about-container .team {
+            margin-top: 30px;
+        }
+
+        .about-container .team h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .about-container .team-members {
             display: flex;
-            flex-wrap: wrap;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .team-member {
-            background: #f1f1f1;
+        .about-container .team-member {
+            background-color: #e6f2ff;
             padding: 15px;
             border-radius: 10px;
-            flex: 1 1 200px;
+            flex: 1 1 250px;
             text-align: center;
-        }
-
-        .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <div class="header-Left">
-        <h2 class="logo">MEDICARE</h2>
-    </div>
-    <div class="header-Right">
-        <a href="index.php">Home</a>
-        <a href="services.php">Services</a>
-        <a href="appointment-list.php">Appointment</a>
-        <a href="about.php" class="active">About Us</a>
-        <a href="contact.php">Contact</a>
-    </div>
-</div>
+<?php include 'sidebar.php'; ?>
 
-<div class="sidebar">
-    <a href="index.php">Dashboard</a>
-    <a href="schedule-form.php">Schedule</a>
-    <a href="#">Message</a>
-    <a href="#">Activity</a>
-    <a href="#">Security</a>
-    <a href="#">Settings</a>
-    <a href="logout.php">Log out</a>
-</div>
+<div class="main">
+    <div class="about-container">
+        <h2>About us</h2>
+        <p>
+        
+       Empowering Healthcare with Smart ERP Solutions
+       At Medicare ERP, we are dedicated to transforming healthcare management through innovative, secure, and efficient enterprise resource planning (ERP) solutions. 
+       Our system integrates patient records, billing, inventory, scheduling, and compliance tracking into one seamless platform—ensuring that medical professionals can focus on what truly matters: patient care.
+        </p>
+        <p>
+        <h2>Mission</h2>   
+        We strive to enhance healthcare efficiency by providing a user-friendly ERP system that streamlines operations, reduces administrative burden, and improves decision-making with real-time analytics.
+        <h2>Trusted By Healthcare Prefessionals</h2>
+        "Medicare ERP has significantly improved our workflow. Managing appointments, tracking inventory, and handling patient data has never been easier!" – Dr. Anna Mendoza, Medical Director
+        </p>
 
-<div class="main about-container">
-    <div class="about-section">
-        <h2>About MEDICARE</h2>
-        <p>MEDICARE is a modern healthcare management system designed to streamline appointment scheduling, patient care, and medical services. We aim to bring digital convenience to both healthcare providers and patients.</p>
-    </div>
-
-    <div class="about-section">
-        <h3>Our Mission</h3>
-        <p>To provide efficient, reliable, and accessible healthcare technology that empowers hospitals and clinics to serve better.</p>
-    </div>
-
-    <div class="about-section">
-        <h3>Our Vision</h3>
-        <p>To be a leading provider of innovative healthcare solutions that transform patient care and hospital efficiency worldwide.</p>
-    </div>
-
-    <div class="about-section">
-        <h3>Our Team</h3>
         <div class="team">
-            <div class="team-member">
-                <img src="https://via.placeholder.com/100" alt="Team Member">
-                <h4>John Rushel Hinoyog</h4>
-                <p>Lead Developer</p>
-            </div>
-            <div class="team-member">
-                <img src="https://via.placeholder.com/100" alt="Team Member">
-                <h4>Jane Doe</h4>
-                <p>UI/UX Designer</p>
-            </div>
-            <div class="team-member">
-                <img src="https://via.placeholder.com/100" alt="Team Member">
-                <h4>Mark Smith</h4>
-                <p>Backend Engineer</p>
+            <h3>Our Team</h3>
+            <div class="team-members">
+                <div class="team-member">
+                    <strong>John Rushel Hinoyog</strong><br>
+                    Lead Developer
+                </div>
+                <div class="team-member">
+                    <strong>Maria Delacruz</strong><br>
+                    UI/UX Designer
+                </div>
+                <div class="team-member">
+                    <strong>Dr. Aaron Torres</strong><br>
+                    Healthcare Advisor
+                </div>
+                <div class="team-member">
+                    <strong>Kevin Santos</strong><br>
+                    Backend Engineer
+                </div>
             </div>
         </div>
     </div>
