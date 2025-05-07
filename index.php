@@ -2,34 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEDICARE - Home</title>
-    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="header">
-            <div class="header-Left">
-                <a href="index.html" class="logo">SAMPLE CV</a>
-            </div>
-            <div class="header-Right">
-               
-            </div>
+<header>
+    <div class="header">
+        <div class="header-Left">
+            <a href="index.php" class="logo">MEDICARE</a>
         </div>
-    </header>
-    
-    <section>
-        <h1>Welcome </h1>
-        <p>Be happy for what</p>
-        <p>you have while</p>
-        <p>working for what</p>
-        <p>you want.</p>
-    </section>
-    
-    <footer>
-        <div class="footer">
-          
+        <div class="header-Right">
+            <a href="index.php">Home</a>
+            <a href="appointment-list.php">Appointments</a>
         </div>
-    </footer>
+    </div>
+</header>
+
+<section>
+    <h1>Welcome</h1>
+    <p>Be happy for what you have while working for what you want.</p>
+</section>
+
+<footer>
+    <div class="footer">
+        &copy; 2025 <strong>MEDICARE</strong>. All Rights Reserved.
+    </div>
+</footer>
 </body>
 </html>
