@@ -1,23 +1,18 @@
 <?php
-// Include the database connection
 require_once 'config.php';
 
 $message = '';
 $error = '';
 
-// Handle form submission for scheduling an appointment
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get the form data
     $patient = $_POST['patient'];
     $doctor = $_POST['doctor'];
     $date = $_POST['date'];
     $time = $_POST['time'];
 
-    // Validate inputs
     if (empty($patient) || empty($doctor) || empty($date) || empty($time)) {
         $error = 'Please fill all fields.';
     } else {
-        // Insert the appointment into the database
         try {
             $sql = "INSERT INTO appointments (patient_id, doctor_id, appointment_date) 
                     VALUES ((SELECT patient_id FROM patients WHERE full_name = :patient LIMIT 1), 
@@ -29,13 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ':doctor' => $doctor,
                 ':appointment_date' => "$date $time"
             ]);
-            $message = 'Appointment scheduled successfully!';
+
+            header("Location: appointment-list.php");
+            exit;
+
         } catch (PDOException $e) {
             $error = 'Error scheduling appointment: ' . $e->getMessage();
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -44,9 +41,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Schedule Appointment</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .main {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 200px;
+            height: 100vh;
+            position: fixed;
+            background-color: #2E8B57;
+            color: white;
+            padding: 20px 15px;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<div class="main" style="margin-left: 220px; padding: 20px;">
+<div class="sidebar">
+    <h2>MEDICARE</h2>
+    <a href="index.php">🏠 Dashboard</a>
+    <a href="schedule.php">📅 Schedule</a>
+    <a href="appointment-list.php">📋 Appointments</a>
+    <a href="about.php">ℹ️ About Us</a>
+    <a href="services.php">🛠️ Services</a>
+    <a href="contact.php">📞 Contact</a>
+    <a href="logout.php" style="color: #ff4d4d;">🚪 Log Out</a>
+</div>
+
+<div class="main">
     <h2>Schedule Appointment</h2>
 
     <?php if (!empty($message)): ?>
