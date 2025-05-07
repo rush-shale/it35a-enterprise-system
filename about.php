@@ -26,7 +26,7 @@ session_start();
 
         .about-container h2 {
             font-size: 32px;
-            color: #003366;
+            color: #2E8B57;
             margin-bottom: 20px;
         }
 

@@ -1,5 +1,5 @@
 <!-- sidebar.php -->
-<div class="sidebar" style="width: 220px; background-color: #003366; color: #fff; height: 100vh; position: fixed; top: 0; left: 0; padding-top: 60px; font-family: Arial, sans-serif;">
+<div class="sidebar" style="width: 220px; background-color: #2E8B57; color: #fff; height: 100vh; position: fixed; top: 0; left: 0; padding-top: 60px; font-family: Arial, sans-serif;">
     <h2 style="text-align: center; margin-bottom: 30px;">MEDICARE</h2>
     <a href="index.php" class="nav-link">🏠 Dashboard</a>
     <a href="schedule-form.php" class="nav-link">📅 Schedule</a>
@@ -20,7 +20,7 @@
     }
 
     .nav-link:hover {
-        background-color: #005fa3;
+        background-color: #2E8B57;
         color: #f0f0f0;
     }
 </style>
