@@ -39,7 +39,7 @@ error_reporting(E_ALL);
         }
         .sidebar {
             width: 220px;
-            background: #003366;
+            background: #2E8B57;
             color: white;
             position: fixed;
             top: 60px;
@@ -68,7 +68,7 @@ error_reporting(E_ALL);
             font-weight: bold;
         }
         .sidebar a:active {
-            background-color: #003366;
+            background-color: #2E8B57;
         }
         .main {
             margin-left: 240px;
