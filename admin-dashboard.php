@@ -1,70 +1,130 @@
 <?php
-require_once 'config.php';
 session_start();
 
-// Fetch basic stats
-$totalPatients = $conn->query("SELECT COUNT(*) FROM patients")->fetchColumn();
-$totalDoctors = $conn->query("SELECT COUNT(*) FROM doctors")->fetchColumn();
-$totalAppointments = $conn->query("SELECT COUNT(*) FROM appointments")->fetchColumn();
+// Ensure the user is logged in and is an admin
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header('Location: login.php');
+    exit();
+}
+
+require_once 'config.php';
+
+// Fetch necessary data for the dashboard (e.g., number of appointments, patients)
+try {
+    $stmtAppointments = $conn->query("SELECT COUNT(*) FROM appointments");
+    $appointmentsCount = $stmtAppointments->fetchColumn();
+
+    $stmtPatients = $conn->query("SELECT COUNT(*) FROM patients");
+    $patientsCount = $stmtPatients->fetchColumn();
+
+    $stmtDoctors = $conn->query("SELECT COUNT(*) FROM doctors");
+    $doctorsCount = $stmtDoctors->fetchColumn();
+} catch (PDOException $e) {
+    echo "Database error: " . $e->getMessage();
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Admin Dashboard - Medicare</title>
     <style>
-        .sidebar {
-            width: 220px;
-            background-color: #003366;
-            color: #fff;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 60px;
+        body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            background-color: #2E8B57;
+            color: white;
+            width: 250px;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar h2 {
+            text-align: center;
         }
         .sidebar a {
             display: block;
-            padding: 10px 20px;
             color: white;
             text-decoration: none;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
         }
         .sidebar a:hover {
-            background-color: #005599;
+            background-color: #246b45;
         }
-        .main {
-            margin-left: 240px;
+        .content {
+            flex-grow: 1;
             padding: 20px;
         }
         .card {
-            background: #f4f4f4;
+            background-color: #f9f9f9;
             padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .card p {
+            font-size: 20px;
+        }
+        .logout-btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .logout-btn:hover {
+            background-color: #e60000;
         }
     </style>
 </head>
 <body>
 
+<!-- Sidebar -->
 <div class="sidebar">
-    <h2 style="text-align:center;">MEDICARE</h2>
-    <a href="admin-dashboard.php">📊 Admin Dashboard</a>
-    <a href="appointment-list.php">📋 View Appointments</a>
-    <a href="schedule-form.php">🗕️ Schedule</a>
-    <a href="patients.php">👨‍⚕️ Patients</a>
+    <h2>MEDICARE ADMIN</h2>
+    <a href="admin-dashboard.php">🏠 Dashboard</a>
+    <a href="appointments.php">📅 Appointments</a>
+    <a href="patients.php">👥 Patients</a>
     <a href="doctors.php">👩‍⚕️ Doctors</a>
-    <a href="logout.php" style="color: #ff4d4d;">🚪 Log Out</a>
+    <a href="logout.php" class="logout-btn">🚪 Log Out</a>
 </div>
 
-<div class="main">
-    <h1>Admin Dashboard</h1>
-    <div class="card">Total Patients: <?= $totalPatients ?></div>
-    <div class="card">Total Doctors: <?= $totalDoctors ?></div>
-    <div class="card">Total Appointments: <?= $totalAppointments ?></div>
+<!-- Main Content -->
+<div class="content">
+    <h1>Welcome to the Admin Dashboard</h1>
+    
+    <div class="card">
+        <h3>Total Appointments</h3>
+        <p><?= $appointmentsCount ?> appointments</p>
+    </div>
+    
+    <div class="card">
+        <h3>Total Patients</h3>
+        <p><?= $patientsCount ?> patients</p>
+    </div>
+    
+    <div class="card">
+        <h3>Total Doctors</h3>
+        <p><?= $doctorsCount ?> doctors</p>
+    </div>
+    
+    <a href="appointments.php" class="btn">Manage Appointments</a>
+    <a href="patients.php" class="btn">Manage Patients</a>
+    <a href="doctors.php" class="btn">Manage Doctors</a>
 </div>
 
 </body>
