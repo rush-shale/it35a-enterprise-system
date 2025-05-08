@@ -63,7 +63,7 @@ session_start();
             transition: background-color 0.3s, padding-left 0.3s, font-weight 0.3s;
         }
         .sidebar a:hover {
-            background-color: #2E8B57;
+            background-color: #00509e;
             padding-left: 25px;
             font-weight: bold;
         }
@@ -126,15 +126,16 @@ session_start();
 
     <!-- Sidebar Section -->
     <div class="sidebar">
-        <h2>MEDICARE</h2>
-        <a href="index.php" class="nav-link">🏠 Dashboard</a>
-        <a href="schedule-form.php" class="nav-link">📅 Schedule</a>
-        <a href="appointment-list.php" class="nav-link">📋 Appointments</a>
-        <a href="about.php" class="nav-link">ℹ️ About Us</a>
-        <a href="services.php" class="nav-link">🛠️ Services</a>
-        <a href="contact.php" class="nav-link">📞 Contact</a>
-        <a href="logout.php" class="nav-link" style="color: #ff4d4d;">🚪 Log Out</a>
-    </div>
+    <h2>MEDICARE</h2>
+    <a href="index.php">🏠 Dashboard</a>
+    <a href="schedule-form.php">📅 Schedule</a>
+    <a href="appointment-list.php">📋 Appointments</a>
+    <a href="about.php">ℹ️ About Us</a>
+    <a href="services.php">🛠️ Services</a>
+    <a href="contact.php">📞 Contact</a>
+    <a href="admin-login.php" style="color: gold;">🛡️ Admin</a>
+    <a href="logout.php" style="color: #ff4d4d;">🚪 Log Out</a>
+</div>
 
     <!-- Main Content Section -->
     <div class="main">
