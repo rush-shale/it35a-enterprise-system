@@ -10,20 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($email) && !empty($password)) {
         try {
-            // Try admin login
-            $stmt = $conn->prepare("SELECT * FROM admins WHERE email = :email");
-            $stmt->execute(['email' => $email]);
-            $admin = $stmt->fetch();
-
-            if ($admin && password_verify($password, $admin['password'])) {
-                $_SESSION['admin'] = [
-                    'id' => $admin['id'],
-                    'username' => $admin['username'],
-                    'email' => $admin['email']
-                ];
-                header('Location: admin-dashboard.php');
-                exit();
-            }
+        
 
             // Try user login
             $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");

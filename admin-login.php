@@ -14,53 +14,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($email) && !empty($password)) {
         try {
-            // Try admin login
             $stmt = $conn->prepare("SELECT * FROM admins WHERE email = :email");
             $stmt->execute(['email' => $email]);
             $admin = $stmt->fetch();
 
-            // Check if admin record is fetched
-            if ($admin) {
-                // Debug: Check if the admin record is correct
-                // echo "<pre>"; print_r($admin); echo "</pre>";
-                
-                // Verify password
-                if (password_verify($password, $admin['password'])) {
-                    $_SESSION['admin'] = [
-                        'id' => $admin['id'],
-                        'username' => $admin['username'],
-                        'email' => $admin['email']
-                    ];
-
-                    // Debug: Check session values
-                    // var_dump($_SESSION); exit();
-
-                    header('Location: admin-dashboard.php');
-                    exit();
-                } else {
-                    $error = "Incorrect password.";
-                }
-            } else {
-                $error = "Admin not found.";
-            }
-
-            // Try user login (If you have a user login feature)
-            $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
-            $stmt->execute(['email' => $email]);
-            $user = $stmt->fetch();
-
-            if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['user'] = [
-                    'id' => $user['user_id'],
-                    'name' => $user['name'],
-                    'email' => $user['email']
+            if ($admin && password_verify($password, $admin['password'])) {
+                $_SESSION['admin'] = [
+                    'id' => $admin['id'],
+                    'username' => $admin['username'],
+                    'email' => $admin['email']
                 ];
-                header('Location: index.php');
-                exit();
-            }
 
-            // If neither matched
-            $error = "Invalid email or password.";
+                header('Location: admin-dashboard.php');
+                exit();
+            } else {
+                $error = "Invalid email or password.";
+            }
         } catch (PDOException $e) {
             $error = "Database error: " . $e->getMessage();
         }
@@ -137,27 +106,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <div class="login-container">
-    <h2>Login to Medicare</h2>
+    <h2>Admin Login</h2>
     <?php if ($error): ?>
         <div class="error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
     <form method="POST" action="">
-        <input type="email" name="email" placeholder="Email" required>
+        <input type="email" name="email" placeholder="Admin Email" required>
         <input type="password" name="password" id="password" placeholder="Password" required>
         <div class="toggle-password" onclick="togglePassword()">Show Password</div>
         <button type="submit" class="btn">Login</button>
     </form>
-    <a href="register.php" class="link-btn">Don't have an account? Register</a>
+
+    <?php
+        $adminRegisterPath = 'admin-register.php'; // Adjust if it's in a folder
+        if (file_exists($adminRegisterPath)):
+    ?>
+        <a href="<?= $adminRegisterPath ?>" class="link-btn">Register as Admin</a>
+    <?php else: ?>
+        <div style="margin-top:12px; color:red;">
+            Registration page not found. Check file location.
+        </div>
+    <?php endif; ?>
 </div>
 
 <script>
     function togglePassword() {
         const passwordInput = document.getElementById("password");
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-        } else {
-            passwordInput.type = "password";
-        }
+        passwordInput.type = passwordInput.type === "password" ? "text" : "password";
     }
 </script>
 </body>

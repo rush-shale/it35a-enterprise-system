@@ -1,16 +1,15 @@
 <?php
-$host = 'localhost';
-$db   = 'medicare';
-$user = 'root'; // or your db username
-$pass = '';     // or your db password
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$host = 'localhost'; // Your database host, often 'localhost'
+$dbname = 'medicare'; // Your database name
+$username = 'root'; // Database username (change if needed)
+$password = ''; // Database password (change if needed)
 
 try {
-    $conn = new PDO($dsn, $user, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Create a PDO connection to the database
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Enable exceptions for errors
 } catch (PDOException $e) {
+    // Handle connection errors
     die("Database connection failed: " . $e->getMessage());
 }
 ?>
