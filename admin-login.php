@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Medicare</title>
+    <title>ADMIN LOGIN MEDICARE</title>
     <style>
         body {
             font-family: Arial, sans-serif;
