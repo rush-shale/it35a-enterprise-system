@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2025 at 01:54 PM
+-- Generation Time: May 10, 2025 at 02:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -156,7 +156,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
-(3, 'John Rushel Hinoyog', 'Hinoyogjohnrushel@gmail.com', '$2y$10$hQt5YEGQ04D/2mGYsnILaesuaV6FWrfvPtW/rp8B2BAi/iVEIQ33S', 'staff', '2025-05-08 11:52:23');
+(3, 'John Rushel Hinoyog', 'Hinoyogjohnrushel@gmail.com', '$2y$10$hQt5YEGQ04D/2mGYsnILaesuaV6FWrfvPtW/rp8B2BAi/iVEIQ33S', 'staff', '2025-05-08 11:52:23'),
+(4, 'John Rushel Hinoyog', '20211395@nbsc.edu.ph', '$2y$10$K1S2Rn2RziR.uhxnXJms7utbks2QuT6JY3k/bDRzrRVp4uRBJnKeC', 'staff', '2025-05-10 11:58:06');
 
 --
 -- Indexes for dumped tables
@@ -254,7 +255,7 @@ ALTER TABLE `prescriptions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
