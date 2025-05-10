@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-// Ensure the user is logged in and is an admin
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+// Check if the admin is logged in
+if (!isset($_SESSION['admin'])) {
     header('Location: login.php');
     exit();
 }
 
 require_once 'config.php';
 
-// Fetch necessary data for the dashboard (e.g., number of appointments, patients)
+// Fetch dashboard data
 try {
     $stmtAppointments = $conn->query("SELECT COUNT(*) FROM appointments");
     $appointmentsCount = $stmtAppointments->fetchColumn();
@@ -24,8 +24,8 @@ try {
     exit();
 }
 
+$admin = $_SESSION['admin']; // Get admin info
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,6 +96,7 @@ try {
 <!-- Sidebar -->
 <div class="sidebar">
     <h2>MEDICARE ADMIN</h2>
+    <p>👤 <?= htmlspecialchars($admin['username']) ?></p>
     <a href="admin-dashboard.php">🏠 Dashboard</a>
     <a href="appointments.php">📅 Appointments</a>
     <a href="patients.php">👥 Patients</a>
@@ -105,23 +106,23 @@ try {
 
 <!-- Main Content -->
 <div class="content">
-    <h1>Welcome to the Admin Dashboard</h1>
-    
+    <h1>Welcome, <?= htmlspecialchars($admin['username']) ?>!</h1>
+
     <div class="card">
         <h3>Total Appointments</h3>
         <p><?= $appointmentsCount ?> appointments</p>
     </div>
-    
+
     <div class="card">
         <h3>Total Patients</h3>
         <p><?= $patientsCount ?> patients</p>
     </div>
-    
+
     <div class="card">
         <h3>Total Doctors</h3>
         <p><?= $doctorsCount ?> doctors</p>
     </div>
-    
+
     <a href="appointments.php" class="btn">Manage Appointments</a>
     <a href="patients.php" class="btn">Manage Patients</a>
     <a href="doctors.php" class="btn">Manage Doctors</a>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2025 at 01:22 PM
+-- Generation Time: May 10, 2025 at 11:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -39,7 +39,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `email`) VALUES
-(1, 'john_admin', '$2y$10$KPpmD2cOHnQhW80qaFSne57tqjmBcqykOd/qdbldblSZyoqk/dkS8', '20211395@nbsc.edu.ph');
+(3, 'john_admin', '$2y$10$N/.2k37zAFMHefnGZj1UkeRzF9Mf38AsV5N8PymOBpuUbT7JPKKZG', '20211395@nbsc.edu.ph');
 
 -- --------------------------------------------------------
 
@@ -162,7 +162,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
-(2, 'John Rushel Hinoyog', '20211395@nbsc.edu.ph', '$2y$10$/xDqWw/1uR0tFObR8hEydeBPJkE7GmH.Xe7B4oVAuGX3BWIeCsYpW', 'staff', '2025-05-07 12:19:06');
+(3, 'John Rushel Hinoyog', 'Hinoyogjohnrushel@gmail.com', '$2y$10$hQt5YEGQ04D/2mGYsnILaesuaV6FWrfvPtW/rp8B2BAi/iVEIQ33S', 'staff', '2025-05-08 11:52:23');
 
 --
 -- Indexes for dumped tables
@@ -224,7 +224,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `appointments`
@@ -260,7 +260,7 @@ ALTER TABLE `prescriptions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

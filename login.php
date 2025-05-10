@@ -6,30 +6,47 @@ $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
-    $password = $_POST['password'];
+    $password = trim($_POST['password']);
 
-    if ($email && $password) {
+    if (!empty($email) && !empty($password)) {
         try {
+            // Try admin login
+            $stmt = $conn->prepare("SELECT * FROM admins WHERE email = :email");
+            $stmt->execute(['email' => $email]);
+            $admin = $stmt->fetch();
+
+            if ($admin && password_verify($password, $admin['password'])) {
+                $_SESSION['admin'] = [
+                    'id' => $admin['id'],
+                    'username' => $admin['username'],
+                    'email' => $admin['email']
+                ];
+                header('Location: admin-dashboard.php');
+                exit();
+            }
+
+            // Try user login
             $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
             $stmt->execute(['email' => $email]);
             $user = $stmt->fetch();
 
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user'] = [
-                    'id' => $user['id'],
+                    'id' => $user['user_id'],
                     'name' => $user['name'],
                     'email' => $user['email']
                 ];
                 header('Location: index.php');
                 exit();
-            } else {
-                $error = "Invalid email or password.";
             }
+
+            // If neither matched
+            $error = "Invalid email or password.";
         } catch (PDOException $e) {
             $error = "Database error: " . $e->getMessage();
         }
     } else {
-        $error = "Please fill in both fields.";
+        $error = "Please fill in both email and password.";
     }
 }
 ?>
@@ -52,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .login-container {
             background: white;
             padding: 30px;
-            width: 300px;
+            width: 320px;
             border-radius: 10px;
             box-shadow: 0 5px 10px rgba(0,0,0,0.1);
             text-align: center;
@@ -91,6 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: red;
             margin-bottom: 10px;
         }
+        .toggle-password {
+            margin-top: -6px;
+            font-size: 12px;
+            cursor: pointer;
+            color: #2E8B57;
+        }
     </style>
 </head>
 <body>
@@ -101,10 +124,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
     <form method="POST" action="">
         <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="password" id="password" placeholder="Password" required>
+        <div class="toggle-password" onclick="togglePassword()">Show Password</div>
         <button type="submit" class="btn">Login</button>
     </form>
     <a href="register.php" class="link-btn">Don't have an account? Register</a>
 </div>
+
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+</script>
 </body>
 </html>
