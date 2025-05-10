@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2025 at 11:34 AM
+-- Generation Time: May 10, 2025 at 01:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -30,16 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(100) DEFAULT NULL
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`id`, `username`, `password`, `email`) VALUES
-(3, 'john_admin', '$2y$10$N/.2k37zAFMHefnGZj1UkeRzF9Mf38AsV5N8PymOBpuUbT7JPKKZG', '20211395@nbsc.edu.ph');
 
 -- --------------------------------------------------------
 
@@ -173,7 +167,7 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `role`, `created_at
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `appointments`
@@ -224,7 +218,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `appointments`
