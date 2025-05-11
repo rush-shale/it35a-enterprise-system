@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .container {
             display: flex;
             width: 1000px;
-            height: 600px;
+            height: 750px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             border-radius: 16px;
             overflow: hidden;
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #28a745;
         }
         .left img {
-            width: 250px;
+            width: 350px;
         }
         .right {
             flex: 1;
