@@ -52,6 +52,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+        .admin-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 16px;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .admin-btn:hover {
+            background-color: #218838;
         }
         .container {
             display: flex;
@@ -149,6 +168,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+    <div class="top-bar">
+        <a href="admin-login.php" class="admin-btn">Admin Login</a>
+    </div>
+
     <div class="container">
         <div class="left">
             <h2>Access Your Coverage,<br>Empower Your<br><span>Health with Medicare</span></h2>
@@ -181,4 +204,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </body>
 </html>
-s
