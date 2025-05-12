@@ -150,7 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-group">
                 <label for="specialization">Specialization</label>
-                <input type="text" id="specialization" name="specialization" value="<?= htmlspecialchars($doctor['specialization']) ?>" required>
+                <input type="text" id="specialization" name="specialization" value="<?= htmlspecialchars($doctor['specialization'] ?? '') ?>" required>
+                <!-- Use empty string if specialization is not available -->
             </div>
             <div class="form-group">
                 <label for="phone">Phone</label>

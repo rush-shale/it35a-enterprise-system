@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2025 at 02:04 PM
+-- Generation Time: May 12, 2025 at 04:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -35,6 +35,13 @@ CREATE TABLE `admins` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `username`, `email`, `password`, `created_at`) VALUES
+(1, 'rush-shale', '20211395@nbsc.edu.ph', '$2y$10$td8NbFNGZwuVaOwiVVN7ouzKDwxBe70dAjh9TLOz.hPoCpElSxX36', '2025-05-10 13:03:26');
+
 -- --------------------------------------------------------
 
 --
@@ -49,14 +56,6 @@ CREATE TABLE `appointments` (
   `reason` text DEFAULT NULL,
   `status` enum('scheduled','completed','cancelled') DEFAULT 'scheduled'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `appointments`
---
-
-INSERT INTO `appointments` (`appointment_id`, `patient_id`, `doctor_id`, `appointment_date`, `reason`, `status`) VALUES
-(1, NULL, NULL, '2025-05-07 21:40:00', NULL, 'scheduled'),
-(2, NULL, 1, '2025-05-07 21:50:00', NULL, 'scheduled');
 
 -- --------------------------------------------------------
 
@@ -84,18 +83,19 @@ CREATE TABLE `doctors` (
   `specialty` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `specialization` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`doctor_id`, `full_name`, `specialty`, `phone`, `email`, `created_at`) VALUES
-(1, 'Dr. Alice Santos', 'Cardiology', '123-456-7890', 'alice@example.com', '2025-05-07 07:03:16'),
-(2, 'Dr. John Cruz', 'Neurology', '234-567-8901', 'john@example.com', '2025-05-07 07:03:16'),
-(3, 'Dr. Maria Lopez', 'Pediatrics', '345-678-9012', 'maria@example.com', '2025-05-07 07:03:16'),
-(4, 'Dr. Daniel Reyes', 'Orthopedics', '456-789-0123', 'daniel@example.com', '2025-05-07 07:03:16');
+INSERT INTO `doctors` (`doctor_id`, `full_name`, `specialty`, `phone`, `email`, `created_at`, `specialization`) VALUES
+(1, 'Dr. Alice Santos', 'Cardiology', '123-456-7890', 'alice@example.com', '2025-05-07 07:03:16', ''),
+(2, 'Dr. John Cruz', 'Neurology', '234-567-8901', 'john@example.com', '2025-05-07 07:03:16', ''),
+(3, 'Dr. Maria Lopez', 'Pediatrics', '345-678-9012', 'maria@example.com', '2025-05-07 07:03:16', ''),
+(4, 'Dr. Daniel Reyes', 'Orthopedics', '456-789-0123', 'daniel@example.com', '2025-05-07 07:03:16', '');
 
 -- --------------------------------------------------------
 
@@ -119,8 +119,7 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`patient_id`, `full_name`, `birth_date`, `gender`, `phone`, `address`, `email`, `created_at`) VALUES
-(1, 'John Doe', '1990-01-01', 'male', '555-1234', '123 Main St', 'johndoe@example.com', '2025-05-07 07:03:16'),
-(2, 'Jane Smith', '1985-02-14', 'female', '555-2345', '456 Oak St', 'janesmith@example.com', '2025-05-07 07:03:16');
+(1, 'John Doe', '1990-01-01', 'male', '0922aygtuo', '123 Main St', 'johndoe@gmail.com', '2025-05-07 07:03:16');
 
 -- --------------------------------------------------------
 
@@ -156,8 +155,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
-(3, 'John Rushel Hinoyog', 'Hinoyogjohnrushel@gmail.com', '$2y$10$hQt5YEGQ04D/2mGYsnILaesuaV6FWrfvPtW/rp8B2BAi/iVEIQ33S', 'staff', '2025-05-08 11:52:23'),
-(4, 'John Rushel Hinoyog', '20211395@nbsc.edu.ph', '$2y$10$K1S2Rn2RziR.uhxnXJms7utbks2QuT6JY3k/bDRzrRVp4uRBJnKeC', 'staff', '2025-05-10 11:58:06');
+(3, 'John Rushel Hinoyog', 'Hinoyogjohnrushel@gmail.com', '$2y$10$hQt5YEGQ04D/2mGYsnILaesuaV6FWrfvPtW/rp8B2BAi/iVEIQ33S', 'staff', '2025-05-08 11:52:23');
 
 --
 -- Indexes for dumped tables
@@ -219,13 +217,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `billing`
