@@ -47,6 +47,14 @@ try {
             text-align: center;
             color: #2E8B57;
         }
+        .message {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -76,10 +84,25 @@ try {
         .scheduled { background: #f0ad4e; color: white; }
         .completed { background: #5cb85c; color: white; }
         .cancelled { background: #d9534f; color: white; }
+        .action-form {
+            display: inline;
+        }
+        .delete-btn {
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <h2>Appointment Management</h2>
+
+    <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+        <div class="message">Appointment deleted successfully.</div>
+    <?php endif; ?>
+
     <table>
         <thead>
             <tr>
@@ -89,29 +112,32 @@ try {
                 <th>Date</th>
                 <th>Reason</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-<?php if ($appointments): ?>
-    <?php foreach ($appointments as $appt): ?>
-        <tr>
-            <td><?= $appt['appointment_id'] ?></td>
-            <td><?= htmlspecialchars($appt['patient_name'] ?? 'N/A') ?></td>
-            <td><?= htmlspecialchars($appt['doctor_name'] ?? 'N/A') ?></td>
-            <td><?= date('M d, Y h:i A', strtotime($appt['appointment_date'])) ?></td>
-            <td><?= htmlspecialchars($appt['reason']) ?></td>
-            <td><span class="status <?= $appt['status'] ?>"><?= $appt['status'] ?></span></td>
-            <td>
-                <a href="edit-appointment.php?id=<?= $appt['appointment_id'] ?>">Edit</a> |
-                <a href="delete_appointment.php?id=<?= $appt['appointment_id'] ?>" onclick="return confirm('Are you sure you want to delete this appointment?');">Delete</a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-<?php else: ?>
-    <tr><td colspan="7">No appointments found.</td></tr>
-<?php endif; ?>
-</tbody>
-
+            <?php if ($appointments): ?>
+                <?php foreach ($appointments as $appt): ?>
+                    <tr>
+                        <td><?= $appt['appointment_id'] ?></td>
+                        <td><?= htmlspecialchars($appt['patient_name'] ?? 'N/A') ?></td>
+                        <td><?= htmlspecialchars($appt['doctor_name'] ?? 'N/A') ?></td>
+                        <td><?= date('M d, Y h:i A', strtotime($appt['appointment_date'])) ?></td>
+                        <td><?= htmlspecialchars($appt['reason']) ?></td>
+                        <td><span class="status <?= $appt['status'] ?>"><?= $appt['status'] ?></span></td>
+                        <td>
+                            <a href="edit-appointment.php?id=<?= $appt['appointment_id'] ?>">Edit</a> |
+                            <form class="action-form" method="POST" action="delete-appointment.php" onsubmit="return confirm('Are you sure you want to delete this appointment?');">
+                                <input type="hidden" name="id" value="<?= $appt['appointment_id'] ?>">
+                                <button type="submit" class="delete-btn">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr><td colspan="7">No appointments found.</td></tr>
+            <?php endif; ?>
+        </tbody>
     </table>
 </body>
 </html>
