@@ -98,7 +98,7 @@ try {
 </head>
 <body>
     <h2>Appointment Management</h2>
-
+    <a href="admin-dashboard.php" class="back-btn">Back to Dashboard</a>
     <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
         <div class="message">Appointment deleted successfully.</div>
     <?php endif; ?>
