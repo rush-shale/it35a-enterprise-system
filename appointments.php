@@ -92,21 +92,26 @@ try {
             </tr>
         </thead>
         <tbody>
-        <?php if ($appointments): ?>
-            <?php foreach ($appointments as $appt): ?>
-                <tr>
-                    <td><?= $appt['appointment_id'] ?></td>
-                    <td><?= htmlspecialchars($appt['patient_name'] ?? 'N/A') ?></td>
-                    <td><?= htmlspecialchars($appt['doctor_name'] ?? 'N/A') ?></td>
-                    <td><?= date('M d, Y h:i A', strtotime($appt['appointment_date'])) ?></td>
-                    <td><?= htmlspecialchars($appt['reason'] ?? 'N/A') ?></td>
-                    <td><span class="status <?= $appt['status'] ?>"><?= $appt['status'] ?></span></td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <tr><td colspan="6">No appointments found.</td></tr>
-        <?php endif; ?>
-        </tbody>
+<?php if ($appointments): ?>
+    <?php foreach ($appointments as $appt): ?>
+        <tr>
+            <td><?= $appt['appointment_id'] ?></td>
+            <td><?= htmlspecialchars($appt['patient_name'] ?? 'N/A') ?></td>
+            <td><?= htmlspecialchars($appt['doctor_name'] ?? 'N/A') ?></td>
+            <td><?= date('M d, Y h:i A', strtotime($appt['appointment_date'])) ?></td>
+            <td><?= htmlspecialchars($appt['reason']) ?></td>
+            <td><span class="status <?= $appt['status'] ?>"><?= $appt['status'] ?></span></td>
+            <td>
+                <a href="edit_appointment.php?id=<?= $appt['appointment_id'] ?>">Edit</a> |
+                <a href="delete_appointment.php?id=<?= $appt['appointment_id'] ?>" onclick="return confirm('Are you sure you want to delete this appointment?');">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+    <tr><td colspan="7">No appointments found.</td></tr>
+<?php endif; ?>
+</tbody>
+
     </table>
 </body>
 </html>
