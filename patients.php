@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
     exit();
@@ -11,7 +12,8 @@ try {
     $stmt = $conn->query("SELECT * FROM patients ORDER BY created_at DESC");
     $patients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Database error: " . $e->getMessage());
+    echo "Database error: " . $e->getMessage();
+    exit();
 }
 ?>
 
@@ -19,118 +21,132 @@ try {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Patients - Admin Dashboard</title>
+    <title>Patients - Medicare Admin</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #1f1f1f;
-            color: #f5f5f5;
+            padding: 20px;
+            background: #f5f5f5;
         }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: #2a2a2a;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #000;
-        }
-
         h2 {
             text-align: center;
-            margin-bottom: 20px;
+            color: #2E8B57;
         }
-
-        .back-btn {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
+        .message {
+            background-color: #dff0d8;
+            color: #3c763d;
+            padding: 10px;
+            border-radius: 5px;
             margin-bottom: 20px;
+            text-align: center;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            background: white;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
         }
-
         th, td {
-            padding: 12px 14px;
-            border-bottom: 1px solid #444;
+            padding: 12px 15px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-
         th {
-            background-color: #333;
-            color: #fff;
+            background-color: #2E8B57;
+            color: white;
         }
-
         tr:hover {
-            background-color: #3a3a3a;
+            background-color: #f1f1f1;
         }
-
-        .btn {
-            padding: 6px 12px;
-            margin: 0 2px;
+        .action-form {
+            display: inline;
+        }
+        .delete-btn {
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .edit-link {
+            color: #2E8B57;
+            font-weight: bold;
             text-decoration: none;
-            color: #fff;
-            border-radius: 4px;
-            font-size: 14px;
         }
-
-        .btn.view { background-color: #28a745; }
-        .btn.edit { background-color: #ffc107; color: #000; }
-        .btn.delete { background-color: #dc3545; }
-
+        .edit-link:hover {
+            text-decoration: underline;
+        }
+        .back-btn {
+            display: inline-block;
+            background-color: #2E8B57;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #238c4b;
+            transform: translateY(-2px);
+        }
+        .back-btn:active {
+            background-color: #1f7a40;
+            transform: translateY(2px);
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="admin-dashboard.php" class="back-btn">← Back to Dashboard</a>
-        <h2>Patient Records</h2>
+    <h2>Patient Records</h2>
 
-        <?php if (count($patients) > 0): ?>
-            <table>
-                <thead>
+    <a href="admin-dashboard.php" class="back-btn">Back to Dashboard</a>
+
+    <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+        <div class="message">Patient record deleted successfully.</div>
+    <?php endif; ?>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Birth Date</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($patients): ?>
+                <?php foreach ($patients as $patient): ?>
                     <tr>
-                        <th>ID</th>
-                        <th>Full Name</th>
-                        <th>Birth Date</th>
-                        <th>Gender</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Created</th>
-                        <th>Actions</th>
+                        <td><?= htmlspecialchars($patient['patient_id']) ?></td>
+                        <td><?= htmlspecialchars($patient['full_name']) ?></td>
+                        <td><?= htmlspecialchars($patient['birth_date']) ?></td>
+                        <td><?= htmlspecialchars($patient['gender']) ?></td>
+                        <td><?= htmlspecialchars($patient['phone']) ?></td>
+                        <td><?= htmlspecialchars($patient['email']) ?></td>
+                        <td><?= htmlspecialchars($patient['created_at']) ?></td>
+                        <td>
+                            <a class="edit-link" href="edit-patient.php?id=<?= $patient['patient_id'] ?>">Edit</a> |
+                            <form class="action-form" method="POST" action="delete-patient.php" onsubmit="return confirm('Are you sure you want to delete this patient?');">
+                                <input type="hidden" name="id" value="<?= $patient['patient_id'] ?>">
+                                <button type="submit" class="delete-btn">Delete</button>
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($patients as $patient): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($patient['patient_id']) ?></td>
-                            <td><?= htmlspecialchars($patient['full_name']) ?></td>
-                            <td><?= htmlspecialchars($patient['birth_date']) ?></td>
-                            <td><?= htmlspecialchars($patient['gender']) ?></td>
-                            <td><?= htmlspecialchars($patient['phone']) ?></td>
-                            <td><?= htmlspecialchars($patient['email']) ?></td>
-                            <td><?= htmlspecialchars($patient['created_at']) ?></td>
-                            <td>
-                                <a class="btn view" href="view_patient.php?id=<?= $patient['patient_id'] ?>">View</a>
-                                <a class="btn edit" href="edit_patient.php?id=<?= $patient['patient_id'] ?>">Edit</a>
-                                <a class="btn delete" href="delete_patient.php?id=<?= $patient['patient_id'] ?>" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No patient records found.</p>
-        <?php endif; ?>
-    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr><td colspan="8">No patients found.</td></tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
 </body>
 </html>
