@@ -102,7 +102,7 @@ try {
             <td><?= htmlspecialchars($appt['reason']) ?></td>
             <td><span class="status <?= $appt['status'] ?>"><?= $appt['status'] ?></span></td>
             <td>
-                <a href="edit_appointment.php?id=<?= $appt['appointment_id'] ?>">Edit</a> |
+                <a href="edit-appointment.php?id=<?= $appt['appointment_id'] ?>">Edit</a> |
                 <a href="delete_appointment.php?id=<?= $appt['appointment_id'] ?>" onclick="return confirm('Are you sure you want to delete this appointment?');">Delete</a>
             </td>
         </tr>
