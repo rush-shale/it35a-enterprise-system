@@ -94,11 +94,33 @@ try {
             cursor: pointer;
             font-weight: bold;
         }
+        .back-btn {
+            display: inline-block;
+            background-color: #2E8B57;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .back-btn:hover {
+            background-color: #238c4b;
+            transform: translateY(-2px);
+        }
+        .back-btn:active {
+            background-color: #1f7a40;
+            transform: translateY(2px);
+        }
     </style>
 </head>
 <body>
     <h2>Appointment Management</h2>
+
     <a href="admin-dashboard.php" class="back-btn">Back to Dashboard</a>
+
     <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
         <div class="message">Appointment deleted successfully.</div>
     <?php endif; ?>
