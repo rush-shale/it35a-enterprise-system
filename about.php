@@ -84,20 +84,14 @@ session_start();
             <h3>Our Team</h3>
             <div class="team-members">
                 <div class="team-member">
-                    <strong>Doc, Daboy D. Makabungkag</strong><br>
-                    Lead Developer
+                    <strong>John Rushel L. Hinoyog</strong><br>
+                     Developer
                 </div>
                 <div class="team-member">
-                    <strong>Doc, Oscar D. Makamahay</strong><br>
-                    UI/UX Designer
+                    <strong>James Ivan Felicitas</strong><br>
+                    UI/UX Designer X Developer
                 </div>
-                <div class="team-member">
-                    <strong>Doc, Nardo D. Makalangkat</strong><br>
-                    Healthcare Advisor
-                </div>
-                <div class="team-member">
-                    <strong>Lester Green</strong><br>
-                    Backend Engineer
+                
                 </div>
             </div>
         </div>
