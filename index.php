@@ -116,12 +116,8 @@ session_start();
     <div class="header">
         <div class="logo">MEDICARE</div>
         <nav>
-            <a href="index.php">Home</a>
-            <a href="services.php">Services</a>
-            <a href="appointment-list.php">Appointments</a>
-            <a href="about.php">About Us</a>
-            <a href="contact.php">Contact</a>
-            <a href="patient_history.php">Patient History</a>
+            
+            
         </nav>
     </div>
 
@@ -147,9 +143,7 @@ session_start();
 
         <!-- Button Group -->
 <div class="button-group">
-    <button onclick="location.href='schedule-form.php'">New Appointment</button>
-    <button onclick="location.href='appointment-list.php'">View Appointments</button>
-    <button onclick="location.href='services.php'">Our Services</button>
+    
     <!-- Patient Registration Toggle Button -->
     <button onclick="toggleForm()">📝 Register Patient</button>
 </div>
