@@ -146,7 +146,7 @@ $admin = $_SESSION['admin'];
         <h2>MEDICARE</h2>
         <p>👤 <?= htmlspecialchars($admin['username']) ?></p>
         <a href="admin-dashboard.php">🏠 Dashboard</a>
-        <a href="appointments.php">📅 Appointments</a>
+        <a href="appointment.php">📅 Appointment</a>
         <a href="patients.php">👥 Patients</a>
         <a href="doctors.php">👩‍⚕️ Doctors</a>
     </div>
