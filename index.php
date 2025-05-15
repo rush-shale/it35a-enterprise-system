@@ -165,9 +165,9 @@ function toggleForm() {
             <h4>Last Chat</h4>
             <input type="text" placeholder="Search Doctor...">
             <ul>
-                <li>Doc, Daboy D. Makabungkag</li>
-                <li>Doc, Oscar D. Makamahay</li>
-                <li>Doc, Nardo D. Makalangkat</li>
+                <li>Dr. John Cruz</li>
+                <li>Dr. Maria Lopez</li>
+                <li>Dr. Daniel Reyes</li>
             </ul>
         </div>
 
