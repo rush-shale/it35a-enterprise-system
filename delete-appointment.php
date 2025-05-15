@@ -14,7 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $stmt->execute([$id]);
 
     // Redirect back to appointment.php with success message
-    header("Location: appointment.php?success=1");
+    header("Location: /it35a-enterprise-system/appointment.php?success=1");
+
     exit();
 }
 

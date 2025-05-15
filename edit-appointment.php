@@ -31,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $update = $conn->prepare("UPDATE appointments SET appointment_date = ?, reason = ?, status = ? WHERE appointment_id = ?");
     $update->execute([$date, $reason, $status, $appointment_id]);
 
-    header("Location: appointment.php?success=1");
+    header("Location: /it35a-enterprise-system/appointment.php?updated=1");
+
     exit();
 }
 ?>

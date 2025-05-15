@@ -125,6 +125,11 @@ try {
         <div class="message">Appointment deleted successfully.</div>
     <?php endif; ?>
 
+    <?php if (isset($_GET['updated']) && $_GET['updated'] == 1): ?>
+    <div class="message">Appointment updated successfully.</div>
+<?php endif; ?>
+
+
     <table>
         <thead>
             <tr>
