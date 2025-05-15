@@ -15,11 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $stmt->fetch();
 
             if ($user && password_verify($password, $user['password'])) {
+                // Set patient session
                 $_SESSION['user'] = [
                     'id' => $user['user_id'],
                     'name' => $user['name'],
                     'email' => $user['email']
                 ];
+                // Set patient_id for history access
+                $_SESSION['patient_id'] = $user['user_id'];
+
                 header('Location: index.php');
                 exit();
             }
@@ -33,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

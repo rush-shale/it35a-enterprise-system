@@ -134,7 +134,6 @@ session_start();
     <a href="about.php">ℹ️ About Us</a>
     <a href="services.php">🛠️ Services</a>
     <a href="contact.php">📞 Contact</a>
-    <a href="patient_history" style="color: gold;">🛡️ Patient History</a>
     <a href="logout.php" style="color: #ff4d4d;">🚪 Log Out</a>
 </div>
 
@@ -147,11 +146,25 @@ session_start();
         </h3>
 
         <!-- Button Group -->
-        <div class="button-group">
-            <button onclick="location.href='schedule-form.php'">New Appointment</button>
-            <button onclick="location.href='appointment-list.php'">View Appointments</button>
-            <button onclick="location.href='services.php'">Our Services</button>
-        </div>
+<div class="button-group">
+    <button onclick="location.href='schedule-form.php'">New Appointment</button>
+    <button onclick="location.href='appointment-list.php'">View Appointments</button>
+    <button onclick="location.href='services.php'">Our Services</button>
+    <!-- Patient Registration Toggle Button -->
+    <button onclick="toggleForm()">📝 Register Patient</button>
+</div>
+
+<!-- Hidden Form Container -->
+<div id="patient-form-container" style="display: none; margin-top: 20px;">
+    <?php include 'patient_form.php'; ?>
+</div>
+
+<script>
+function toggleForm() {
+    var formDiv = document.getElementById('patient-form-container');
+    formDiv.style.display = formDiv.style.display === 'none' ? 'block' : 'none';
+}
+</script>
 
         <!-- Last Chat Section -->
         <div class="last-chat">
