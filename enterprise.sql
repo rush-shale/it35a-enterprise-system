@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2025 at 02:56 PM
+-- Generation Time: May 15, 2025 at 05:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -125,6 +125,23 @@ INSERT INTO `patients` (`patient_id`, `full_name`, `birth_date`, `gender`, `phon
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `patient_history`
+--
+
+CREATE TABLE `patient_history` (
+  `id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `appointment_date` date DEFAULT NULL,
+  `doctor_name` varchar(255) DEFAULT NULL,
+  `diagnosis` text DEFAULT NULL,
+  `treatment` text DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `prescriptions`
 --
 
@@ -198,6 +215,12 @@ ALTER TABLE `patients`
   ADD PRIMARY KEY (`patient_id`);
 
 --
+-- Indexes for table `patient_history`
+--
+ALTER TABLE `patient_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
@@ -244,6 +267,12 @@ ALTER TABLE `doctors`
 --
 ALTER TABLE `patients`
   MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `patient_history`
+--
+ALTER TABLE `patient_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `prescriptions`

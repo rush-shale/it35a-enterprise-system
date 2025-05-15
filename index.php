@@ -1,4 +1,4 @@
-<?php 
+<a?php 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
@@ -121,6 +121,7 @@ session_start();
             <a href="appointment-list.php">Appointments</a>
             <a href="about.php">About Us</a>
             <a href="contact.php">Contact</a>
+            <a href="patient_history.php">Patient History</a>
         </nav>
     </div>
 
@@ -133,7 +134,7 @@ session_start();
     <a href="about.php">ℹ️ About Us</a>
     <a href="services.php">🛠️ Services</a>
     <a href="contact.php">📞 Contact</a>
-    <a href="admin-login.php" style="color: gold;">🛡️ Admin</a>
+    <a href="patient_history" style="color: gold;">🛡️ Patient History</a>
     <a href="logout.php" style="color: #ff4d4d;">🚪 Log Out</a>
 </div>
 
