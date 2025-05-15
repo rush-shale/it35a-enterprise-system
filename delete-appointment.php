@@ -10,19 +10,14 @@ if (!isset($_SESSION['admin'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     $id = $_POST['id'];
 
-    // Prepare and execute the delete statement
     $stmt = $conn->prepare("DELETE FROM appointments WHERE appointment_id = ?");
-    if ($stmt->execute([$id])) {
-        $_SESSION['message'] = "Appointment successfully deleted.";
-        $_SESSION['message_type'] = "success";
-    } else {
-        $_SESSION['message'] = "Failed to delete appointment.";
-        $_SESSION['message_type'] = "error";
-    }
-} else {
-    $_SESSION['message'] = "Invalid request.";
-    $_SESSION['message_type'] = "warning";
+    $stmt->execute([$id]);
+
+    // Redirect back to appointment.php with success message
+    header("Location: appointment.php?success=1");
+    exit();
 }
 
+// Fallback redirect
 header("Location: appointment.php");
 exit();
